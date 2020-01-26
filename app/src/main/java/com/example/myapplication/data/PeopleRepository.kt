@@ -8,12 +8,12 @@ import kotlin.coroutines.CoroutineContext
 
 class PeopleRepository(override val coroutineContext: CoroutineContext = Dispatchers.IO)
     : CoroutineScope {
-    fun insertPerson(people: People) = async {
-        App.db.peopleDao().insertPeople(people)
+    fun insertPerson(person: Person) = async {
+        App.db.peopleDao().insertPeople(person)
     }
 
-    fun deletePerson(people: People) = async {
-        App.db.peopleDao().deletePeople(people)
+    fun deletePerson(person: Person) = async {
+        App.db.peopleDao().deletePeople(person)
     }
 
     fun getPeople(option: String) = async {

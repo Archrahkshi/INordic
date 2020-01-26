@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.myapplication.R
-import com.example.myapplication.data.People
+import com.example.myapplication.data.Person
 import com.example.myapplication.data.PeopleRepository
 import kotlinx.android.synthetic.main.fragment_edit_people.*
 import kotlinx.coroutines.CoroutineScope
@@ -38,7 +38,7 @@ class FragmentEditPeople(
 
         buttonDone.setOnClickListener {
             launch {
-                val people = People(
+                val people = Person(
                     firstName = editTextFirstName.text.toString(),
                     lastName = editTextLastName.text.toString(),
                     age = editTextAge.text.toString().toInt(),

@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         buttonFragment4.setOnClickListener {
             supportFragmentManager.beginTransaction().replace(
                 R.id.frameLayout,
-                BlankFragment4()
+                FragmentWeather()
             ).commit()
         }
 

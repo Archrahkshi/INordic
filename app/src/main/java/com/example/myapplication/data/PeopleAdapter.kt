@@ -1,46 +1,46 @@
-package com.example.myapplication.ui
+package com.example.myapplication.data
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
-import com.example.myapplication.data.People
-import kotlinx.android.synthetic.main.item_people.view.*
+import kotlinx.android.synthetic.main.item_person.view.*
 
 class PeopleAdapter(
-    private val people: MutableList<People>,
-    private val actionEdit: (People) -> Unit,
-    private val actionDelete: (People) -> Unit
+    private val people: MutableList<Person>,
+    private val actionEdit: (Person) -> Unit,
+    private val actionDelete: (Person) -> Unit
 ) : RecyclerView.Adapter<PeopleAdapter.PeopleHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PeopleHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_people, parent, false)
+            .inflate(R.layout.item_person, parent, false)
         return PeopleHolder(view)
     }
 
     override fun getItemCount() = people.size
     override fun onBindViewHolder(holder: PeopleHolder, position: Int) {
-        holder.bind(people[position], actionEdit) {
+        holder.bind(
+            people[position], actionEdit) {
             actionDelete(it)
             people.remove(it)
             notifyDataSetChanged()
         }
     }
 
-    fun updatePeopleList(peopleList: List<People>) {
+    fun updatePeopleList(personList: List<Person>) {
         people.clear()
-        people.addAll(peopleList)
+        people.addAll(personList)
         notifyDataSetChanged()
     }
 
     class PeopleHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun bind(
-            people: People,
-            actionEdit: (People) -> Unit,
-            actionDelete: (People) -> Unit
+            person: Person,
+            actionEdit: (Person) -> Unit,
+            actionDelete: (Person) -> Unit
         ) = itemView.apply {
-            people.apply {
+            person.apply {
 //                textViewDbId.text = "$id."
                 textViewFirstName.text = firstName
                 textViewLastName.text = lastName
@@ -48,11 +48,11 @@ class PeopleAdapter(
             }
 
             imageViewDelete.setOnClickListener {
-                actionDelete(people)
+                actionDelete(person)
             }
 
             imageViewEdit.setOnClickListener {
-                actionEdit(people)
+                actionEdit(person)
             }
         }
     }

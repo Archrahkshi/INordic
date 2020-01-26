@@ -17,7 +17,7 @@ data class Weather(
 )
 
 @Entity
-data class People(
+data class Person(
     val firstName: String,
     val lastName: String,
     val age: Int,

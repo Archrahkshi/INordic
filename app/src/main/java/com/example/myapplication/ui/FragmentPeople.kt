@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.myapplication.R
+import com.example.myapplication.data.PeopleAdapter
 import com.example.myapplication.data.PeopleRepository
 import kotlinx.android.synthetic.main.fragment_people.*
 import kotlinx.coroutines.CoroutineScope
@@ -50,14 +51,14 @@ class FragmentPeople(
                     val bundle = Bundle()
                     bundle.let {
                         it.putString("firstName", person.firstName)
-                        it.putString("lasName", person.lastName)
+                        it.putString("lastName", person.lastName)
                         it.putInt("age", person.age)
                         it.putString("id", person.id)
                     }
-                    val fragmentEditPeople = FragmentEditPeople()
-                    fragmentEditPeople.arguments = bundle
+                    val fragmentEditPerson = FragmentEditPeople()
+                    fragmentEditPerson.arguments = bundle
                     fragmentManager?.beginTransaction()
-                        ?.replace(R.id.frameLayout, fragmentEditPeople)
+                        ?.replace(R.id.frameLayout, fragmentEditPerson)
                         ?.addToBackStack(null)
                         ?.commit()
                 },
@@ -69,7 +70,7 @@ class FragmentPeople(
             recyclerViewPeople.adapter = adapter
 
             spinnerMode.adapter = ArrayAdapter(
-                context,
+                context!!,
                 android.R.layout.simple_spinner_dropdown_item,
                 options
             )
